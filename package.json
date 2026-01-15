@@ -2,14 +2,15 @@
   "name": "project-review-api",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
+    "dev": "tsx watch --env-file=.env src/index.ts",
     "db:generate": "drizzle-kit generate",
-    "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio",
+    "db:push": "node --env-file=.env node_modules/drizzle-kit/bin.cjs push",
+    "db:studio": "node --env-file=.env node_modules/drizzle-kit/bin.cjs studio",
     "check": "npx ultracite check",
     "fix": "npx ultracite fix"
   },
   "dependencies": {
+    "@hono/node-server": "^1.19.9",
     "@neondatabase/serverless": "^1.0.2",
     "drizzle-orm": "^0.45.1",
     "hono": "^4.11.4"
