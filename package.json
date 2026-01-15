@@ -2,7 +2,7 @@
   "name": "project-review-api",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch --env-file=.env src/index.ts",
+    "dev": "tsx watch --env-file=.env src/dev.ts",
     "db:generate": "drizzle-kit generate",
     "db:push": "node --env-file=.env node_modules/drizzle-kit/bin.cjs push",
     "db:studio": "node --env-file=.env node_modules/drizzle-kit/bin.cjs studio",

@@ -1,8 +1,8 @@
-import { serve } from "@hono/node-server";
 import { Hono } from "hono";
+import { handle } from "hono/vercel";
 import apiRoutes from "./routes/index.js";
 
-const app = new Hono();
+const app = new Hono().basePath("/api");
 
 // Welcome route
 app.get("/", (c) => {
@@ -18,7 +18,7 @@ app.get("/", (c) => {
 });
 
 // Mount API routes
-app.route("/api", apiRoutes);
+app.route("/", apiRoutes);
 
 // Global error handler
 app.onError((err, c) => {
@@ -31,11 +31,8 @@ app.notFound((c) => {
   return c.json({ error: "Not found" }, 404);
 });
 
-const port = 3000;
-
-serve({
-  fetch: app.fetch,
-  port,
-});
-
 export default app;
+export const GET = handle(app);
+export const POST = handle(app);
+export const PUT = handle(app);
+export const DELETE = handle(app);
