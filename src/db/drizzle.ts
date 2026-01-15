@@ -2,6 +2,7 @@ import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 import { schema } from "./schema.js";
 
-const sql = neon(process.env.DATABASE_URL as string);
+const sql = neon(process.env.DATABASE_URL ?? "");
+const db = drizzle(sql, { schema });
 
-export const db = drizzle(sql, { schema });
+export default db;

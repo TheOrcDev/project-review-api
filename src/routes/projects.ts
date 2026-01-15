@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { db } from "../db/index.js";
+import db from "../db/drizzle.js";
 import { type InsertProject, projects } from "../db/schema.js";
 
 const projectsRouter = new Hono();
