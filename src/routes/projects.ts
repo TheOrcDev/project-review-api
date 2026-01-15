@@ -1,7 +1,7 @@
-import { Hono } from "hono";
 import { eq, isNull } from "drizzle-orm";
+import { Hono } from "hono";
 import { db } from "../db/index.js";
-import { projects, InsertProject } from "../db/schema.js";
+import { type InsertProject, projects } from "../db/schema.js";
 
 const projectsRouter = new Hono();
 
@@ -20,10 +20,7 @@ projectsRouter.get("/", async (c) => {
 projectsRouter.get("/:id", async (c) => {
   const id = c.req.param("id");
 
-  const [project] = await db
-    .select()
-    .from(projects)
-    .where(eq(projects.id, id));
+  const [project] = await db.select().from(projects).where(eq(projects.id, id));
 
   if (!project) {
     return c.json({ error: "Project not found" }, 404);
@@ -38,7 +35,7 @@ projectsRouter.post("/", async (c) => {
     const body = await c.req.json<Partial<InsertProject>>();
     const { name, githubRepoUrl, description, resetDate } = body;
 
-    if (!name || !githubRepoUrl || !description) {
+    if (!(name && githubRepoUrl && description)) {
       return c.json(
         { error: "name, githubRepoUrl, and description are required" },
         400

@@ -1,7 +1,7 @@
 import { Hono } from "hono";
+import previouslySubmittedRouter from "./previously-submitted-projects.js";
 import projectsRouter from "./projects.js";
 import reviewedProjectsRouter from "./reviewed-projects.js";
-import previouslySubmittedRouter from "./previously-submitted-projects.js";
 
 const apiRoutes = new Hono();
 

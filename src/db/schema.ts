@@ -39,5 +39,13 @@ export type InsertProject = typeof projects.$inferInsert;
 export type SelectReviewedProject = typeof reviewedProjects.$inferSelect;
 export type InsertReviewedProject = typeof reviewedProjects.$inferInsert;
 
-export type SelectPreviouslySubmittedProject = typeof previouslySubmittedProjects.$inferSelect;
-export type InsertPreviouslySubmittedProject = typeof previouslySubmittedProjects.$inferInsert;
+export type SelectPreviouslySubmittedProject =
+  typeof previouslySubmittedProjects.$inferSelect;
+export type InsertPreviouslySubmittedProject =
+  typeof previouslySubmittedProjects.$inferInsert;
+
+export const schema = {
+  projects,
+  reviewedProjects,
+  previouslySubmittedProjects,
+};
