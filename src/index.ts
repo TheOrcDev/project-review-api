@@ -1,3 +1,4 @@
+import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import apiRoutes from "./routes/index.js";
 
@@ -28,6 +29,13 @@ app.onError((err, c) => {
 // 404 handler
 app.notFound((c) => {
   return c.json({ error: "Not found" }, 404);
+});
+
+const port = 3000;
+
+serve({
+  fetch: app.fetch,
+  port,
 });
 
 export default app;
